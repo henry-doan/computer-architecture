@@ -18,6 +18,7 @@ main:
 	syscall 
 	move $t0, $v0
 	
+	# if the first number is 0 then go to done
 	blez $t0, done
 	
 	# Display second prompt and store second number
@@ -38,6 +39,7 @@ main:
 	syscall 
 	move $t2, $v0
 
+# add all three numbers
 addProcess:
 	add $t6, $t0, $t1
 	add $t7, $t6, $t2
@@ -50,6 +52,7 @@ addProcess:
 	la $a0, ($t7)
 	syscall
 
+# min process
 minProcess: 
 	blt $t0, $t1, compare1and3
 	
@@ -124,10 +127,6 @@ firstnumMax:
 	la $a0, ($t0)
 	syscall
 	
-	li $v0, 4
-	la $a0, bye
-	syscall 
-	
 	bgt $t0, $t2, main
 	
 secondnumMax:
@@ -139,10 +138,6 @@ secondnumMax:
 	la $a0, ($t1)
 	syscall
 	
-	li $v0, 4
-	la $a0, bye
-	syscall 
-	
 	bgt $t1, $t2, main
 	
 thirdnumMax:
@@ -153,13 +148,10 @@ thirdnumMax:
 	li $v0, 1
 	la $a0, ($t2)
 	syscall
-	
-	li $v0, 4
-	la $a0, bye
-	syscall 
-	
+
 	bgt $t2, $t0, main
-	
+
+# finish program
 done: 
 	li $v0, 4
 	la $a0, bye
@@ -167,4 +159,3 @@ done:
 	
 	li $v0, 10
 	syscall 
-	
