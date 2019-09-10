@@ -1,14 +1,15 @@
 .data 
-	prompt1: .asciiz  "Enter the first Number: \n"
+	prompt1: .asciiz  "Enter the first Number (0 to exit): \n"
 	prompt2: .asciiz  "Enter the second Number: \n"
 	prompt3: .asciiz  "Enter the third Number: \n"
 	sumresults: .asciiz  "\n The Sum of all numbers is: \n"
 	minresults: .asciiz  "\n The Smallest of all numbers is: \n"
 	maxresults: .asciiz  "\n The Biggest of all numbers is: \n"
-	bye: .asciiz "\n see ya later"
+	bye: .asciiz "\n see ya later \n"
 
 .text
-	# Displlign ay first prompt and store first number
+main:
+	# display first prompt and store first number
 	li $v0, 4
 	la $a0, prompt1
 	syscall 
@@ -16,6 +17,8 @@
 	li $v0, 5
 	syscall 
 	move $t0, $v0
+	
+	blez $t0, done
 	
 	# Display second prompt and store second number
 	li $v0, 4
@@ -121,7 +124,11 @@ firstnumMax:
 	la $a0, ($t0)
 	syscall
 	
-	bgt $t0, $t2, done
+	li $v0, 4
+	la $a0, bye
+	syscall 
+	
+	bgt $t0, $t2, main
 	
 secondnumMax:
 	li $v0, 4
@@ -132,7 +139,11 @@ secondnumMax:
 	la $a0, ($t1)
 	syscall
 	
-	bgt $t1, $t2, done
+	li $v0, 4
+	la $a0, bye
+	syscall 
+	
+	bgt $t1, $t2, main
 	
 thirdnumMax:
 	li $v0, 4
@@ -143,10 +154,17 @@ thirdnumMax:
 	la $a0, ($t2)
 	syscall
 	
-	bgt $t2, $t0, done
+	li $v0, 4
+	la $a0, bye
+	syscall 
+	
+	bgt $t2, $t0, main
 	
 done: 
 	li $v0, 4
 	la $a0, bye
+	syscall 
+	
+	li $v0, 10
 	syscall 
 	
