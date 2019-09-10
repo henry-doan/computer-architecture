@@ -95,12 +95,56 @@ thirdnumMin:
 	syscall
 	
 	blt $t2, $t0, maxProcess
-	
+#max	
 maxProcess:
-
+	bgt $t0, $t1, compare1and3max
+	
+	bgt $t1, $t0, compare2and3max
+	
+	
+compare1and3max:
+	bgt $t0, $t2, firstnumMax
+	
+	bgt $t2, $t0, thirdnumMax
+	
+compare2and3max: 
+	bgt $t1, $t2, secondnumMax
+	
+	bgt $t2, $t1, thirdnumMax
+	
+firstnumMax:
 	li $v0, 4
-	la $a0, bye
+	la $a0, maxresults
 	syscall 
+	
+	li $v0, 1
+	la $a0, ($t0)
+	syscall
+	
+	bgt $t0, $t2, done
+	
+secondnumMax:
+	li $v0, 4
+	la $a0, maxresults
+	syscall 
+	
+	li $v0, 1
+	la $a0, ($t1)
+	syscall
+	
+	bgt $t1, $t2, done
+	
+thirdnumMax:
+	li $v0, 4
+	la $a0, maxresults
+	syscall 
+	
+	li $v0, 1
+	la $a0, ($t2)
+	syscall
+	
+	bgt $t2, $t0, done
+	
 done: 
 	li $v0, 4
 	la $a0, bye
