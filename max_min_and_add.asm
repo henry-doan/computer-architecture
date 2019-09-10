@@ -2,10 +2,11 @@
 	prompt1: .asciiz  "Enter the first Number: \n"
 	prompt2: .asciiz  "Enter the second Number: \n"
 	prompt3: .asciiz  "Enter the third Number: \n"
-	sumresults: .asciiz  "The Sum of all numbers is: \n"
-	minresults: .asciiz  "The Smallest of all numbers is: \n"
-	maxresults: .asciiz  "The Biggest of all numbers is: \n"
-	bye: .asciiz "see ya later \n"
+	sumresults: .asciiz  "\n The Sum of all numbers is: \n"
+	minresults: .asciiz  "\n The Smallest of all numbers is: \n"
+	maxresults: .asciiz  "\n The Biggest of all numbers is: \n"
+	bye: .asciiz "\n see ya later"
+
 .text
 	# Displlign ay first prompt and store first number
 	li $v0, 4
