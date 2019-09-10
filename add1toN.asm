@@ -1,5 +1,5 @@
 .data 
-	prompt: .asciiz  "\n Input a value for N:"
+	prompt: .asciiz  "\n Input a value for N (0 to exit):"
 	result: .asciiz  "\n The sum of the integers from 1 to N is:"
 	bye: .asciiz "\n Come back soon!"
 	.globl main
